@@ -1,32 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [time, setTime] = useState(new Date())
 
-  const handleIncrement = () => {
-    setCount(count + 1)
+  const tick = () => {
+    setTime(new Date())
   }
 
-  const handleDecrement = () => {
-    setCount(count - 1)
-  }
-
-  const handleReset = () => {
-    setCount(0)
-  }
-
+  setInterval(tick, 1000)
+  
   return (
     <div>
-      <h1>Hello Counter!</h1>
-      <Button clicked={handleDecrement} text="-" />
-      <p>{count}</p>
-      <Button clicked={handleIncrement} text="+" />
-      <Button clicked={handleReset} text="Reset" />
+      <p>{time.toLocaleTimeString()}</p>
     </div>
   );
-}
-
-const Button = ({ text, clicked }) => {
-  return <button onClick={clicked}>{text}</button>
 }
